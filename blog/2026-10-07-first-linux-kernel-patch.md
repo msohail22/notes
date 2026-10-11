@@ -28,18 +28,29 @@ These are the notes I wish I had before I started.
       stroke-dasharray: 560; stroke-dashoffset: 560;
       animation: kp-draw 7s linear infinite;
     }
-    .kp-step { animation: kp-lit 7s linear infinite; }
-    .kp-step rect { fill: none; stroke: currentColor; stroke-width: 1; }
-    .kp-step text { fill: currentColor; font-size: 12px; text-anchor: middle; }
-    @keyframes kp-draw {
-      0%   { stroke-dashoffset: 560; }
-      80%  { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: 0; }
+    /* The boxes stay fully opaque so the connecting line never shows through
+       them; only the stroke and the label pulse. */
+    .kp-step rect {
+      fill: var(--paper, #fff); stroke: currentColor; stroke-width: 1; stroke-opacity: .3;
+      animation: kp-stroke 7s linear infinite; animation-delay: inherit;
     }
-    @keyframes kp-lit {
-      0%, 6%     { opacity: .35; }
-      11%, 19%   { opacity: 1; }
-      25%, 100%  { opacity: .35; }
+    .kp-step text {
+      fill: currentColor; fill-opacity: .45; font-size: 12px; text-anchor: middle;
+      animation: kp-text 7s linear infinite; animation-delay: inherit;
+    }
+    @keyframes kp-draw {
+      0%        { stroke-dashoffset: 560; }
+      80%, 100% { stroke-dashoffset: 0; }
+    }
+    @keyframes kp-stroke {
+      0%, 6%    { stroke-opacity: .3; }
+      11%, 19%  { stroke-opacity: 1; }
+      25%, 100% { stroke-opacity: .3; }
+    }
+    @keyframes kp-text {
+      0%, 6%    { fill-opacity: .45; }
+      11%, 19%  { fill-opacity: 1; }
+      25%, 100% { fill-opacity: .45; }
     }
   </style>
   <line class="kp-track" x1="20" y1="44" x2="660" y2="44" />
@@ -149,8 +160,3 @@ git send-email --dry-run --to="Greg Kroah-Hartman <gregkh@linuxfoundation.org>" 
 ```
 
 Drop `--dry-run` and it is public and permanent. `Result: 250` means the server accepted it.
-
-## What I would tell myself
-
-Wait two weeks or more. Do not resend. The code was five minutes of work; the process was
-the actual lesson, and the process is the part nobody writes down.
