@@ -5,17 +5,20 @@ Reading paths through large open-source codebases. Simplest files first, hardest
 Each repository has two things: a **complete listing** of every file it contains, ordered by
 size, and a **short curated path** through the files that actually teach the architecture.
 
-| Repository | Every file | Curated path | Files |
-|---|---|---|---|
-| github.com/llvm/llvm-project | [llvm/](llvm/README.md) | [llvm-reading-order.md](llvm-reading-order.md) | 188,312 |
-| github.com/ClickHouse/ClickHouse | [clickhouse/](clickhouse/README.md) | [clickhouse-reading-order.md](clickhouse-reading-order.md) | 85,436 |
+| Repository | Every source file | Curated path | In repo | Listed |
+|---|---|---|---|---|
+| github.com/llvm/llvm-project | [llvm/](llvm/README.md) | [llvm-reading-order.md](llvm-reading-order.md) | 188,312 | 35,965 |
+| github.com/ClickHouse/ClickHouse | [clickhouse/](clickhouse/README.md) | [clickhouse-reading-order.md](clickhouse-reading-order.md) | 85,436 | 13,993 |
 
 The same idea for the kernel lives in [`../linux-kernel/02-reading-order.md`](../linux-kernel/02-reading-order.md),
 which is the format the curated paths follow.
 
 ## The complete listings
 
-Every file in the repository, ranked by line count, split into tiers:
+Every **source** file, ranked by line count, split into tiers. Tests, vendored third-party
+code, documentation translations and generated files are excluded — they are four fifths of
+both repositories and none of them teach you the codebase. Each repository index shows the
+exact counts removed by each rule.
 
 ```
 tier 0   1-20 lines        trivial
@@ -30,11 +33,10 @@ tier 8   5001-10000        very heavy
 tier 9   10001 and up      hardest
 ```
 
-Entry numbers run continuously across all tiers of a repository, so entry 1 is the smallest
-file in the repo and the last entry is the largest. Binary files have no lines to count and
-are listed separately, ordered by byte size.
+Entry numbers run continuously across all tiers, so entry 1 is the smallest source file in
+the repository and the last entry is the largest.
 
-Tiers are split into parts of 5,000 entries so that GitHub renders them. 66 parts in total.
+Tiers are split into parts of 5,000 entries so that GitHub renders them. 24 parts in total.
 
 ## Two ways to use this
 
@@ -54,9 +56,13 @@ llvm-project   upstream/main     471f4bfee055   2026-10-23
 ClickHouse     upstream/master   205bdad540d    2026-10-23
 ```
 
-Line count is a measured proxy for effort, not for difficulty. Generated test data lands at
-the "hardest" end while being unreadable rather than hard, and a 44-line file can carry the
-idea everything else rests on. Each repository index says more about this.
+Exclusions are path rules, file-name rules and a content check. The content check flags a
+file when most of its sampled lines are numeric or string literals rather than code; because
+it is a heuristic, every file it removes is listed in full under each repository, so a false
+positive is visible rather than silent.
+
+Line count is a measured proxy for effort, not for difficulty. A 44-line file can carry the
+idea everything else rests on.
 
 ## Regenerating
 
