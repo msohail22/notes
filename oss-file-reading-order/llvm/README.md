@@ -8,18 +8,17 @@ Every file you would actually read in `github.com/llvm/llvm-project`, ordered by
 | Excluded: test, benchmark or vendored directory | −146,138 |
 | Excluded: data or generated file extension | −1,135 |
 | Excluded: header says the file is generated | −162 |
-| Excluded: content is a data table ([list](excluded-data-tables.md)) | −4 |
+| Excluded: content is a data table ([list](excluded-data-tables.md)) | −12 |
 | Excluded: file name says generated | −1 |
-| **Listed here** | **35,965** |
+| **Listed here** | **35,957** |
 
 Ref `upstream/main`, 2026-10-23. For a short curated path instead, see [../llvm-reading-order.md](../llvm-reading-order.md).
 
 ## What the order means
 
 Files are ranked by line count, a measured proxy for effort rather than for
-difficulty. A short file can still be the hard one: `llvm/lib/IR/Use.cpp` is 44
-lines and encodes the def-use edge the whole IR rests on. Use the tiers to pick
-something the right size for the time you have, then judge the file yourself.
+difficulty. A short file can still be the hard one. Use the tiers to pick something
+the right size for the time you have, then judge the file yourself.
 
 | Part | Tier | Lines | Files | Range |
 |---|---|---|---|---|
@@ -32,8 +31,8 @@ something the right size for the time you have, then judge the file yourself.
 | [tier-03-part-01.md](tier-03-part-01.md) | 3 — moderate | 101-250 | 5,000 | 101-199 |
 | [tier-03-part-02.md](tier-03-part-02.md) | 3 — moderate | 101-250 | 1,597 | 199-250 |
 | [tier-04-part-01.md](tier-04-part-01.md) | 4 — substantial | 251-500 | 3,639 | 251-500 |
-| [tier-05-part-01.md](tier-05-part-01.md) | 5 — large | 501-1000 | 2,342 | 501-1000 |
-| [tier-06-part-01.md](tier-06-part-01.md) | 6 — very large | 1001-2500 | 1,605 | 1001-2500 |
-| [tier-07-part-01.md](tier-07-part-01.md) | 7 — heavy | 2501-5000 | 468 | 2501-4995 |
+| [tier-05-part-01.md](tier-05-part-01.md) | 5 — large | 501-1000 | 2,339 | 501-1000 |
+| [tier-06-part-01.md](tier-06-part-01.md) | 6 — very large | 1001-2500 | 1,602 | 1001-2500 |
+| [tier-07-part-01.md](tier-07-part-01.md) | 7 — heavy | 2501-5000 | 466 | 2501-4995 |
 | [tier-08-part-01.md](tier-08-part-01.md) | 8 — very heavy | 5001-10000 | 183 | 5002-9897 |
 | [tier-09-part-01.md](tier-09-part-01.md) | 9 — hardest | 10001-and up | 66 | 10134-65834 |

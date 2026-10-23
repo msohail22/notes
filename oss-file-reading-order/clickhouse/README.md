@@ -6,21 +6,20 @@ Every file you would actually read in `github.com/ClickHouse/ClickHouse`, ordere
 |---|---|
 | Text files in the repository | 79,725 |
 | Excluded: test, benchmark or vendored directory | −42,127 |
-| Excluded: documentation translation | −21,696 |
+| Excluded: documentation translation | −21,755 |
 | Excluded: header says the file is generated | −1,333 |
 | Excluded: data or generated file extension | −514 |
-| Excluded: generated documentation site | −59 |
 | Excluded: file name says generated | −3 |
-| **Listed here** | **13,993** |
+| Excluded: content is a data table ([list](excluded-data-tables.md)) | −1 |
+| **Listed here** | **13,992** |
 
 Ref `upstream/master`, 2026-10-23. For a short curated path instead, see [../clickhouse-reading-order.md](../clickhouse-reading-order.md).
 
 ## What the order means
 
 Files are ranked by line count, a measured proxy for effort rather than for
-difficulty. A short file can still be the hard one: `llvm/lib/IR/Use.cpp` is 44
-lines and encodes the def-use edge the whole IR rests on. Use the tiers to pick
-something the right size for the time you have, then judge the file yourself.
+difficulty. A short file can still be the hard one. Use the tiers to pick something
+the right size for the time you have, then judge the file yourself.
 
 | Part | Tier | Lines | Files | Range |
 |---|---|---|---|---|
@@ -29,7 +28,7 @@ something the right size for the time you have, then judge the file yourself.
 | [tier-02-part-01.md](tier-02-part-01.md) | 2 — small | 51-100 | 2,755 | 51-100 |
 | [tier-03-part-01.md](tier-03-part-01.md) | 3 — moderate | 101-250 | 3,182 | 101-250 |
 | [tier-04-part-01.md](tier-04-part-01.md) | 4 — substantial | 251-500 | 1,639 | 251-500 |
-| [tier-05-part-01.md](tier-05-part-01.md) | 5 — large | 501-1000 | 835 | 501-1000 |
+| [tier-05-part-01.md](tier-05-part-01.md) | 5 — large | 501-1000 | 834 | 501-1000 |
 | [tier-06-part-01.md](tier-06-part-01.md) | 6 — very large | 1001-2500 | 448 | 1001-2459 |
 | [tier-07-part-01.md](tier-07-part-01.md) | 7 — heavy | 2501-5000 | 100 | 2516-5000 |
 | [tier-08-part-01.md](tier-08-part-01.md) | 8 — very heavy | 5001-10000 | 18 | 5019-9469 |

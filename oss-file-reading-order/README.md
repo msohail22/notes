@@ -7,11 +7,12 @@ size, and a **short curated path** through the files that actually teach the arc
 
 | Repository | Every source file | Curated path | In repo | Listed |
 |---|---|---|---|---|
-| github.com/llvm/llvm-project | [llvm/](llvm/README.md) | [llvm-reading-order.md](llvm-reading-order.md) | 188,312 | 35,965 |
-| github.com/ClickHouse/ClickHouse | [clickhouse/](clickhouse/README.md) | [clickhouse-reading-order.md](clickhouse-reading-order.md) | 85,436 | 13,993 |
+| github.com/llvm/llvm-project | [llvm/](llvm/README.md) | [llvm-reading-order.md](llvm-reading-order.md) | 188,312 | 35,957 |
+| github.com/ClickHouse/ClickHouse | [clickhouse/](clickhouse/README.md) | [clickhouse-reading-order.md](clickhouse-reading-order.md) | 85,436 | 13,992 |
+| github.com/torvalds/linux | [linux/](linux/README.md) | [../linux-kernel/02-reading-order.md](../linux-kernel/02-reading-order.md) | 96,710 | 71,098 |
 
-The same idea for the kernel lives in [`../linux-kernel/02-reading-order.md`](../linux-kernel/02-reading-order.md),
-which is the format the curated paths follow.
+The kernel's curated path lives in [`../linux-kernel/02-reading-order.md`](../linux-kernel/02-reading-order.md).
+That file is the format the other curated paths follow.
 
 ## The complete listings
 
@@ -36,7 +37,7 @@ tier 9   10001 and up      hardest
 Entry numbers run continuously across all tiers, so entry 1 is the smallest source file in
 the repository and the last entry is the largest.
 
-Tiers are split into parts of 5,000 entries so that GitHub renders them. 24 parts in total.
+Tiers are split into parts of 5,000 entries so that GitHub renders them. 44 parts in total.
 
 ## Two ways to use this
 
@@ -52,14 +53,19 @@ Line counts come from `git grep -I -c ''` against the upstream default branch, s
 reflect the real repository, not a local checkout:
 
 ```
-llvm-project   upstream/main     471f4bfee055   2026-10-23
-ClickHouse     upstream/master   205bdad540d    2026-10-23
+llvm-project   upstream/main    471f4bfee055   2026-10-23
+ClickHouse     upstream/master  205bdad540d    2026-10-23
+linux          origin/master    864c07de0c7d   2026-10-23
 ```
 
-Exclusions are path rules, file-name rules and a content check. The content check flags a
-file when most of its sampled lines are numeric or string literals rather than code; because
-it is a heuristic, every file it removes is listed in full under each repository, so a false
-positive is visible rather than silent.
+Exclusions are path rules, file-name rules and two content checks. One flags a file when at
+least half of its evenly sampled lines are numeric or string literals rather than code. The
+other flags a header that is at least 85% `#define` lines or enum constants, which is how
+generated register, pin and enum tables look. Both are heuristics, so every file they remove
+is listed in full under each repository, and a false positive is visible rather than silent.
+
+The separation is sharp in practice: real source files score zero on the first check, while
+data files score 0.55 and above.
 
 Line count is a measured proxy for effort, not for difficulty. A 44-line file can carry the
 idea everything else rests on.
