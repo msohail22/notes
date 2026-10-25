@@ -1,5 +1,6 @@
 ---
 title: My first Linux kernel patch
+slug: first-linux-kernel-patch
 date: 2026-10-07
 topic: linux-kernel
 tags: [kernel, checkpatch, git-send-email]
