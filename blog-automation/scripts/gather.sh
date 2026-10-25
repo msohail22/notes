@@ -9,7 +9,7 @@ OUT="$ROOT/daily/$DAY"
 mkdir -p "$OUT"
 
 # Tweet-only files: frontmatter is for us, nothing reads it at build time.
-for f in prs codeforces low-level-lab opinions; do
+for f in prs codeforces low-level-lab home-server opinions; do
   [ -f "$OUT/$f.md" ] || printf -- '---\nday: %s\nkind: %s\nstatus: draft\ntweeted: no\n---\n\n' "$DAY" "$f" > "$OUT/$f.md"
 done
 
